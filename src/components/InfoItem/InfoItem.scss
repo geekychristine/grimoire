@@ -1,0 +1,22 @@
+.grim-info-item {
+  margin-right: $baseSpacing;
+  margin-bottom: $halfSpacing;
+
+  & .grim-heading {
+    @include body-copy;
+    margin-right: $halfSpacing;
+    margin-bottom: 0;
+  }
+
+  &-title,
+  &-value {
+    @include body-copy;
+    display: inline-block;
+    margin: 0;
+    margin-right: $halfSpacing / 2;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

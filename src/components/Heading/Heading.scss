@@ -1,0 +1,5 @@
+.grim-heading {
+  @include heading;
+  display: inline-block;
+  margin-bottom: $halfSpacing;
+}

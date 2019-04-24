@@ -1,0 +1,18 @@
+.grim-section {
+  @include card-gutters;
+  display: flex;
+  align-items: center;
+
+  padding: $baseSpacing;
+  border-bottom: 1px solid #ccc;
+
+  // Overrides for headings and items
+  .grim-heading,
+  .grim-info-item {
+    margin-bottom: 0;
+  }
+
+  &--split {
+    justify-content: space-between;
+  }
+}
