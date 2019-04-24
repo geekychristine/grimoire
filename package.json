@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "grimoire",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "A D&D 5e personal spellbook",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Christine Martino <christine.martino@gmail.com>",
   "dependencies": {
     "gatsby": "^2.3.27",
     "gatsby-image": "^2.0.40",
@@ -37,9 +37,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/geekychristine/grimoire"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/geekychristine/grimoire/issues"
   }
 }
