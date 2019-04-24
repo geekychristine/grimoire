@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Christine Martino <christine.martino@gmail.com>",
   "dependencies": {
+    "axios": "^0.18.0",
     "gatsby": "^2.3.27",
     "gatsby-image": "^2.0.40",
     "gatsby-plugin-manifest": "^2.0.29",
