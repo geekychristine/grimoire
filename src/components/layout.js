@@ -5,7 +5,7 @@
  * See: https://www.gatsbyjs.org/docs/static-query/
  */
 
-import React from "react"
+import React, { Fragment } from "react"
 import PropTypes from "prop-types"
 import { StaticQuery, graphql } from "gatsby"
 
@@ -24,7 +24,7 @@ const Layout = ({ children }) => (
       }
     `}
     render={data => (
-      <>
+      <Fragment>
         <Header siteTitle={data.site.siteMetadata.title} />
         <div
           style={{
@@ -41,7 +41,7 @@ const Layout = ({ children }) => (
             <a href="https://www.gatsbyjs.org">Gatsby</a>
           </footer>
         </div>
-      </>
+      </Fragment>
     )}
   />
 )
