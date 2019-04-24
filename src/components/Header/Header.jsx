@@ -6,11 +6,12 @@ class Header extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
     baseClass: PropTypes.string.isRequired,
-    siteTitle: PropTypes.string.isRequired,
+    siteTitle: PropTypes.string,
   }
 
   static defaultProps = {
     baseClass: "grim-header",
+    siteTitle: ``,
   }
 
   render() {
