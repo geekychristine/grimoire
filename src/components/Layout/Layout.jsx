@@ -1,6 +1,6 @@
 import React, { Fragment } from "react"
 import PropTypes from "prop-types"
-import Header from "../header"
+import Header from "../Header/Header"
 import { StaticQuery, graphql } from "gatsby"
 import "../../css/main.scss"
 
