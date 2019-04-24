@@ -20,7 +20,7 @@ class IndexPage extends Component {
   constructor(props) {
     super(props)
 
-    // this.getSpellList = this.getSpellList.bind(this)
+    this.getSpellList = this.getSpellList.bind(this)
 
     this.api = {
       spells: "http://dnd5eapi.co/api/spells",
@@ -38,25 +38,21 @@ class IndexPage extends Component {
   getSpellList() {
     // const res = await fetch(this.api.spells)
     // const data = await res.json()
-
     this.setState({
       loading: true,
     })
-    axios
-      .get(this.api.spells)
-      .then(list => {
+    console.warn("this.api.spells:", this.api.spells)
+    axios({ url: this.api.spells })
+      .then(response => {
+        console.warn("response:", response)
         this.setState({
           loading: false,
-          spells: data.results,
+          spells: response.data.results,
         })
       })
       .catch(error => {
         this.setState({ loading: false, error })
       })
-
-    return {
-      spells: data.results,
-    }
   }
 
   render() {
@@ -87,7 +83,7 @@ class IndexPage extends Component {
         <Link to="/spell/?id=1">Go to page 2</Link>
       </Layout>
     ) : (
-      "Loading..."
+      <p>Loading...</p>
     )
   }
 }
