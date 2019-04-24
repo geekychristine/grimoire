@@ -4,8 +4,8 @@ import { Link } from "gatsby"
 
 class Header extends Component {
   static propTypes = {
-    children: PropTypes.node.isRequired,
-    baseClass: PropTypes.string.isRequired,
+    children: PropTypes.node,
+    baseClass: PropTypes.string,
     siteTitle: PropTypes.string,
   }
 
