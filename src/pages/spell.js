@@ -11,9 +11,6 @@ class SpellPage extends Component {
   }
 
   render() {
-    const { location } = this.props
-    console.warn("this.props:", this.props)
-
     return (
       <Layout>
         <SEO title="Spell" />
