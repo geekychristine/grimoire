@@ -34,17 +34,7 @@ class IndexPage extends Component {
   }
 
   async componentDidMount() {
-    axios({ url: this.api.spells })
-      .then(response => {
-        console.warn("response:", response);
-        this.setState({
-          loading: false,
-          spells: response.data.results
-        });
-      })
-      .catch(error => {
-        this.setState({ loading: false, error });
-      });
+    this.getSpellList();
   }
 
   getSpellList() {
@@ -53,10 +43,8 @@ class IndexPage extends Component {
     this.setState({
       loading: true
     });
-    console.warn("getSpellList: this.api.spells:", this.api.spells);
     axios({ url: this.api.spells })
       .then(response => {
-        console.warn("response:", response);
         this.setState({
           loading: false,
           spells: response.data.results
