@@ -6,6 +6,7 @@
   "author": "Christine Martino <christine.martino@gmail.com>",
   "dependencies": {
     "axios": "^0.18.0",
+    "classnames": "^2.2.6",
     "gatsby": "^2.3.27",
     "gatsby-image": "^2.0.40",
     "gatsby-plugin-manifest": "^2.0.29",
@@ -30,6 +31,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
+    "api": "json-server --watch src/api/db.json --routes src/api/routes.json",
     "dev": "gatsby develop",
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run develop",
