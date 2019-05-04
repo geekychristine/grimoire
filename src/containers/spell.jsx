@@ -8,8 +8,6 @@ import Section from "../components/Section/Section";
 import Flag from "../components/Flag/Flag";
 import Heading from "../components/Heading/Heading";
 
-import { spellQueryMapper } from "../utils/query";
-
 class Spell extends Component {
   constructor(props) {
     super(props);
@@ -25,7 +23,7 @@ class Spell extends Component {
   };
 
   static async getInitialProps({ query }) {
-    const url = query.url || spellQueryMapper(query);
+    const url = query.url;
 
     const res = await fetch(url);
     const data = await res.json();
