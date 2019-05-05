@@ -31,7 +31,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "api": "json-server --watch src/api/db.json --routes src/api/routes.json",
+    "api": "json-server --watch src/api/db.json --routes src/api/routes.json --id index",
     "dev": "gatsby develop",
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run develop",

@@ -31,7 +31,10 @@ class Index extends Component {
   }
 
   async componentDidMount() {
-    this.getSpellList();
+    if (!this.state.spells.length) {
+      console.warn("Fetching Spell list on homepage...");
+      this.getSpellList();
+    }
   }
 
   successResponse(response) {
