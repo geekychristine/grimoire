@@ -23,12 +23,8 @@ class Index extends Component {
     this.successResponse = this.successResponse.bind(this);
     this.failureResponse = this.failureResponse.bind(this);
 
-    this.api = {
-      spells: "/api/spells"
-    };
-
     this.state = {
-      loading: false,
+      loading: true,
       error: null,
       spells: []
     };
@@ -59,16 +55,18 @@ class Index extends Component {
     });
 
     await fetcher(
-      { url: this.api.spells },
+      { url: this.props.api.spells },
       this.successResponse,
       this.failureResponse
     );
   }
 
   render() {
-    const { spells, loading } = this.state;
+    const { spells, loading, error } = this.state;
 
-    return (
+    return error ? (
+      <p>{error.message}</p>
+    ) : (
       <Loader loading={loading}>
         <Fragment>
           <h1>Spell List:</h1>

@@ -7,7 +7,10 @@ module.exports = {
     title: `Grimoire`,
     description: `A PWA for D&D 5th Edition Spells.`,
     author: `@gatsbyjs`,
-    baseApi: "http://dnd5eapi.co/api"
+    apiBase:
+      process.env.NODE_ENV === "production" ? "http://dnd5eapi.co/api" : "/api",
+    apiSpells: "/spells",
+    apiSpellId: "/spell/:id"
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

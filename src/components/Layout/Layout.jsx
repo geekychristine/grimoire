@@ -12,13 +12,18 @@ class Layout extends React.Component {
   render() {
     const { data, children } = this.props;
 
+    const api = {
+      spells: `${data.apiBase}${data.apiSpells}`,
+      spellId: `${data.apiBase}${data.apiSpellId}`
+    };
+
     return (
       <Fragment>
         <Header siteTitle={data.title} />
         <div className="gr-layout">
           <main>
             {React.Children.map(children, child =>
-              React.cloneElement(child, { ...child.props, data: data })
+              React.cloneElement(child, { ...child.props, data: data, api })
             )}
           </main>
           <footer>© {new Date().getFullYear()}</footer>
@@ -35,7 +40,9 @@ export default props => (
         site {
           siteMetadata {
             title
-            baseApi
+            apiBase
+            apiSpells
+            apiSpellId
           }
         }
       }
