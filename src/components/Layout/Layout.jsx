@@ -14,9 +14,13 @@ class Layout extends React.Component {
 
     return (
       <Fragment>
-        <Header siteTitle={data.site.siteMetadata.title} />
+        <Header siteTitle={data.title} />
         <div className="grim-layout">
-          <main>{children}</main>
+          <main>
+            {React.Children.map(children, child =>
+              React.cloneElement(child, { ...child.props, data: data })
+            )}
+          </main>
           <footer>© {new Date().getFullYear()}</footer>
         </div>
       </Fragment>
@@ -36,6 +40,6 @@ export default props => (
         }
       }
     `}
-    render={data => <Layout data={data} {...props} />}
+    render={data => <Layout data={data.site.siteMetadata} {...props} />}
   />
 );
