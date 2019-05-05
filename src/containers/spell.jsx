@@ -165,7 +165,7 @@ class Spell extends Component {
   render() {
     const { spell, error, loading } = this.state;
 
-    return error ? (
+    return error && error.message ? (
       <p>{error.message}</p>
     ) : (
       <Loader loading={loading || !spell}>
@@ -180,7 +180,7 @@ class Spell extends Component {
             {this.renderSection(this.classes)}
             {this.renderSection(this.specs)}
             {this.renderSection(this.descriptions)}
-            {this.renderSection(this.higherLevel)}
+            {spell.higher_level && this.renderSection(this.higherLevel)}
           </Card>
         ) : (
           ""
