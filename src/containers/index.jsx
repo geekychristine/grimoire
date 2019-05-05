@@ -4,6 +4,8 @@ import { Link } from "gatsby";
 
 import { fetcher } from "../utils/fetch";
 
+import Loader from "../components/Loader/Loader";
+
 class Index extends Component {
   static propTypes = {
     children: PropTypes.node,
@@ -66,26 +68,26 @@ class Index extends Component {
   render() {
     const { spells, loading } = this.state;
 
-    return !loading ? (
-      <Fragment>
-        <h1>Spell List:</h1>
-        <ul>
-          {spells && spells.length ? (
-            spells.map((spell, key) => {
-              const spellId = key + 1;
-              return (
-                <li key={spellId}>
-                  <Link to={`/spell?id=${spellId}`}>{spell.name}</Link>
-                </li>
-              );
-            })
-          ) : (
-            <li>No Spells Listed</li>
-          )}
-        </ul>
-      </Fragment>
-    ) : (
-      <p>Loading...</p>
+    return (
+      <Loader loading={loading}>
+        <Fragment>
+          <h1>Spell List:</h1>
+          <ul>
+            {spells && spells.length ? (
+              spells.map((spell, key) => {
+                const spellId = key + 1;
+                return (
+                  <li key={spellId}>
+                    <Link to={`/spell?id=${spellId}`}>{spell.name}</Link>
+                  </li>
+                );
+              })
+            ) : (
+              <li>No Spells Listed</li>
+            )}
+          </ul>
+        </Fragment>
+      </Loader>
     );
   }
 }
