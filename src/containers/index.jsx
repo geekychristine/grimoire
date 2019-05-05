@@ -79,7 +79,7 @@ class Index extends Component {
                 const spellId = key + 1;
                 return (
                   <li key={spellId}>
-                    <Link to={`/spell?id=${spellId}`}>{spell.name}</Link>
+                    <Link to={`/spell/?id=${spellId}`}>{spell.name}</Link>
                   </li>
                 );
               })

@@ -71,7 +71,7 @@ class SpellPage extends Component {
     return (
       <Layout>
         <SEO title="Spell" />
-        <Spell />
+        <Spell {...this.props} />
       </Layout>
     );
   }

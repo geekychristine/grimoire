@@ -12,17 +12,14 @@ import Heading from "../components/Heading/Heading";
 class Spell extends Component {
   static propTypes = {
     children: PropTypes.node,
-    baseClass: PropTypes.string
-  };
-
-  static defaultProps = {
-    baseClass: "gr-spell-detail"
+    location: PropTypes.object
   };
 
   constructor(props) {
     super(props);
 
-    console.warn("props:", props);
+    this.baseClass = "gr-spell";
+    this.spellId = props.location.search.replace("?id=", "");
 
     this.getSpellList = this.getSpellList.bind(this);
     this.successResponse = this.successResponse.bind(this);
@@ -37,7 +34,6 @@ class Spell extends Component {
 
   async componentDidMount() {
     if (!this.state.spell) {
-      console.warn("Fetching Spell list on spell page...");
       this.getSpellList();
     }
   }
@@ -62,20 +58,18 @@ class Spell extends Component {
     });
 
     await fetcher(
-      { url: `${this.props.api.spells}/1` },
+      { url: `${this.props.api.spells}/${this.spellId}` },
       this.successResponse,
       this.failureResponse
     );
   }
 
   listClasses(name) {
-    const { baseClass } = this.props;
     const { spell } = this.state;
-    console.warn("spell[name]:", spell[name]);
 
     return spell[name]
       ? spell[name].map((classType, key) => (
-          <span key={key} className={`${baseClass}-class`}>
+          <span key={key} className={`${this.baseClass}-class`}>
             {classType.name}
           </span>
         ))
@@ -83,12 +77,11 @@ class Spell extends Component {
   }
 
   get components() {
-    const { baseClass } = this.props;
     const { spell } = this.state;
 
     return spell
       ? spell.components.map((type, key) => (
-          <span key={key} className={`${baseClass}-components`}>
+          <span key={key} className={`${this.baseClass}-components`}>
             {type}
           </span>
         ))
