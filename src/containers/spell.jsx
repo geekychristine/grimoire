@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import fetch from "isomorphic-unfetch";
 
-import Layout from "../components/Layout/Layout";
 import InfoItem from "../components/InfoItem/InfoItem";
 import Card from "../components/Card/Card";
 import Section from "../components/Section/Section";
@@ -16,22 +14,20 @@ class Spell extends Component {
   }
 
   static defaultProps = {
-    baseClass: "grim-spell",
-    api: {
-      spells: "http://dnd5eapi.co/api/spells"
-    }
+    baseClass: "grim-spell"
   };
 
-  static async getInitialProps({ query }) {
-    const url = query.url;
+  componentDidMount() {
+    console.warn("props:", this.props);
+    // const url = query.url;
 
-    const res = await fetch(url);
-    const data = await res.json();
+    // const res = await fetch(url);
+    // const data = await res.json();
 
-    console.warn("### data:", data);
-    return {
-      spell: data
-    };
+    // console.warn("### data:", data);
+    // return {
+    //   spell: data
+    // };
   }
 
   listClasses(name) {
@@ -62,44 +58,40 @@ class Spell extends Component {
   render() {
     const { spell } = this.props;
 
-    return (
-      <Layout>
-        {spell ? (
-          <Card>
-            <Section modifier="split">
-              <Heading>{spell.name}</Heading>
-              <Flag>Level {spell.level}</Flag>
-            </Section>
+    return spell ? (
+      <Card>
+        <Section modifier="split">
+          <Heading>{spell.name}</Heading>
+          <Flag>Level {spell.level}</Flag>
+        </Section>
 
-            <Section>
-              <InfoItem title="Casting Time">{spell.casting_time}</InfoItem>
-              <InfoItem title="Duration">{spell.duration}</InfoItem>
-              <InfoItem title="Page">{spell.page}</InfoItem>
-            </Section>
+        <Section>
+          <InfoItem title="Casting Time">{spell.casting_time}</InfoItem>
+          <InfoItem title="Duration">{spell.duration}</InfoItem>
+          <InfoItem title="Page">{spell.page}</InfoItem>
+        </Section>
 
-            <Section>
-              <InfoItem title="Classes">{this.listClasses("classes")}</InfoItem>
-              <InfoItem title="Sub-Classes">
-                {this.listClasses("subclasses")}
-              </InfoItem>
-            </Section>
-            <Section>
-              <InfoItem title="School">{spell.school.name}</InfoItem>
-              <InfoItem title="Components">{this.components}</InfoItem>
-              <InfoItem title="Range">{spell.range}</InfoItem>
-            </Section>
-            <Section>
-              <InfoItem title="Concentration">{spell.concentration}</InfoItem>
-              <InfoItem title="Ritual">{spell.ritual}</InfoItem>
-            </Section>
+        <Section>
+          <InfoItem title="Classes">{this.listClasses("classes")}</InfoItem>
+          <InfoItem title="Sub-Classes">
+            {this.listClasses("subclasses")}
+          </InfoItem>
+        </Section>
+        <Section>
+          <InfoItem title="School">{spell.school.name}</InfoItem>
+          <InfoItem title="Components">{this.components}</InfoItem>
+          <InfoItem title="Range">{spell.range}</InfoItem>
+        </Section>
+        <Section>
+          <InfoItem title="Concentration">{spell.concentration}</InfoItem>
+          <InfoItem title="Ritual">{spell.ritual}</InfoItem>
+        </Section>
 
-            <Section>
-              <InfoItem title="Description">{spell.desc[0]}</InfoItem>
-            </Section>
-          </Card>
-        ) : null}
-      </Layout>
-    );
+        <Section>
+          <InfoItem title="Description">{spell.desc[0]}</InfoItem>
+        </Section>
+      </Card>
+    ) : null;
   }
 }
 

@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import axios from "axios";
 import { Link } from "gatsby";
+
+import { fetcher } from "../utils/fetch";
 
 import Layout from "../components/Layout/Layout";
 import SEO from "../components/seo";
-
-// import SpellIndex from "../containers/SpellIndex";
 
 class IndexPage extends Component {
   static propTypes = {
@@ -22,6 +21,8 @@ class IndexPage extends Component {
     super(props);
 
     this.getSpellList = this.getSpellList.bind(this);
+    this.successResponse = this.successResponse.bind(this);
+    this.failureResponse = this.failureResponse.bind(this);
 
     this.api = {
       spells: "/api/spells"
@@ -29,6 +30,7 @@ class IndexPage extends Component {
 
     this.state = {
       loading: false,
+      error: null,
       spells: []
     };
   }
@@ -37,22 +39,32 @@ class IndexPage extends Component {
     this.getSpellList();
   }
 
-  getSpellList() {
-    // const res = await fetch(this.api.spells)
-    // const data = await res.json()
+  successResponse(response) {
+    this.setState({
+      loading: false,
+      error: null,
+      spells: response.body.results
+    });
+  }
+
+  failureResponse(response) {
+    this.setState({
+      loading: false,
+      error: response.body,
+      spells: []
+    });
+  }
+
+  async getSpellList() {
     this.setState({
       loading: true
     });
-    axios({ url: this.api.spells })
-      .then(response => {
-        this.setState({
-          loading: false,
-          spells: response.data.results
-        });
-      })
-      .catch(error => {
-        this.setState({ loading: false, error });
-      });
+
+    await fetcher(
+      { url: this.api.spells },
+      this.successResponse,
+      this.failureResponse
+    );
   }
 
   render() {
