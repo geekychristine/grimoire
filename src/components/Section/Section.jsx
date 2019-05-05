@@ -3,7 +3,7 @@ import classnames from "classnames";
 
 class Section extends Component {
   static defaultProps = {
-    baseClass: "grim-section",
+    baseClass: "gr-section",
     modifierClass: null
   };
 

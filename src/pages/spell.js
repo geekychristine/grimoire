@@ -13,7 +13,7 @@ class SpellPage extends Component {
   };
 
   static defaultProps = {
-    baseClass: "grim-home-page"
+    baseClass: "gr-home-page"
   };
 
   constructor(props) {

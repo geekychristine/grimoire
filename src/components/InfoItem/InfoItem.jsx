@@ -4,7 +4,7 @@ import Heading from "../Heading/Heading";
 
 class InfoItem extends Component {
   static defaultProps = {
-    baseClass: "grim-info-item",
+    baseClass: "gr-info-item",
     title: "Title"
   };
 

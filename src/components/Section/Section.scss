@@ -1,4 +1,4 @@
-.grim-section {
+.gr-section {
   @include card-gutters;
   display: flex;
   align-items: center;
@@ -7,8 +7,8 @@
   border-bottom: 1px solid #ccc;
 
   // Overrides for headings and items
-  .grim-heading,
-  .grim-info-item {
+  .gr-heading,
+  .gr-info-item {
     margin-bottom: 0;
   }
 

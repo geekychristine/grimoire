@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class Flag extends Component {
   static defaultProps = {
-    baseClass: "grim-flag",
+    baseClass: "gr-flag",
     element: "p"
   };
 

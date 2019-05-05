@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
-class Card extends Component {
+class Loader extends Component {
   static defaultProps = {
-    baseClass: "gr-card"
+    baseClass: "gr-loader"
   };
 
   render() {
@@ -12,4 +12,4 @@ class Card extends Component {
   }
 }
 
-export default Card;
+export default Loader;

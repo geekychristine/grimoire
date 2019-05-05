@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class Heading extends Component {
   static defaultProps = {
-    baseClass: "grim-heading",
+    baseClass: "gr-heading",
     element: "h3"
   };
 

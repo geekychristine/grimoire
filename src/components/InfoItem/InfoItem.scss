@@ -1,8 +1,8 @@
-.grim-info-item {
+.gr-info-item {
   margin-right: $baseSpacing;
   margin-bottom: $halfSpacing;
 
-  & .grim-heading {
+  & .gr-heading {
     @include body-copy;
     margin-right: $halfSpacing;
     margin-bottom: 0;

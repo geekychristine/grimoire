@@ -11,7 +11,7 @@ class Index extends Component {
   };
 
   static defaultProps = {
-    baseClass: "grim-home-page"
+    baseClass: "gr-home-page"
   };
 
   constructor(props) {
@@ -38,15 +38,14 @@ class Index extends Component {
 
   successResponse(response) {
     this.setState({
-      loading: false,
-      error: null,
+      ...response,
       spells: response.body.results
     });
   }
 
   failureResponse(response) {
     this.setState({
-      loading: false,
+      ...response,
       error: response.error,
       spells: []
     });

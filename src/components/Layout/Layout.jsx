@@ -15,7 +15,7 @@ class Layout extends React.Component {
     return (
       <Fragment>
         <Header siteTitle={data.title} />
-        <div className="grim-layout">
+        <div className="gr-layout">
           <main>
             {React.Children.map(children, child =>
               React.cloneElement(child, { ...child.props, data: data })

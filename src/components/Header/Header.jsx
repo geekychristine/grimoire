@@ -10,7 +10,7 @@ class Header extends Component {
   }
 
   static defaultProps = {
-    baseClass: "grim-header",
+    baseClass: "gr-header",
     siteTitle: ``,
   }
 

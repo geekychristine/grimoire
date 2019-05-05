@@ -14,7 +14,7 @@ class Spell extends Component {
   }
 
   static defaultProps = {
-    baseClass: "grim-spell"
+    baseClass: "gr-spell"
   };
 
   listClasses(name) {
