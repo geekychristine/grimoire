@@ -16,7 +16,13 @@ class InfoItem extends Component {
         <Heading element="h3" className={`${baseClass}-title`}>
           {title}:
         </Heading>
-        <p className={`${baseClass}-value`}>{children}</p>
+        {children && children.length === 1 ? (
+          <p className={`${baseClass}-value`}>{children}</p>
+        ) : (
+          React.Children.map(children, child => (
+            <p className={`${baseClass}-value`}>{child}</p>
+          ))
+        )}
       </div>
     );
   }

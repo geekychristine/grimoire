@@ -27,6 +27,7 @@ class Spell extends Component {
     this.successResponse = this.successResponse.bind(this);
     this.failureResponse = this.failureResponse.bind(this);
     this.renderSection = this.renderSection.bind(this);
+    this.renderDescriptions = this.renderDescriptions.bind(this);
 
     // InfoItem Schemas
     this.casting = [
@@ -44,7 +45,23 @@ class Spell extends Component {
       { title: "Concentration", key: "concentration" },
       { title: "Ritual", key: "ritual" }
     ];
-    this.descriptions = [{ title: "Description", key: "desc[0]" }];
+    this.descriptions = [
+      {
+        title: "Description",
+        key: "desc",
+        prose: true,
+        func: this.renderDescriptions
+      }
+    ];
+
+    this.higherLevel = [
+      {
+        title: "Higher Levels",
+        key: "higher_level",
+        prose: true,
+        func: this.renderDescriptions
+      }
+    ];
 
     this.state = {
       loading: true,
@@ -90,19 +107,24 @@ class Spell extends Component {
     return (
       <Section>
         {items.map((item, index) => {
-          if (!item.func) {
-            console.warn("no Function:", item);
+          // Exit if property doesn't exist
+          if (!spell[item.key]) {
+            return null;
+          }
+
+          // If there's a special function, run that.
+          if (item.func) {
             return (
               <InfoItem key={index} title={item.title}>
-                {get(spell, item.key)}
+                {item.func(item.key)}
               </InfoItem>
             );
           }
 
-          console.warn("has Function:", item);
+          // Otherwise render normally.
           return (
             <InfoItem key={index} title={item.title}>
-              {item.func(item.key)}
+              {get(spell, item.key)}
             </InfoItem>
           );
         })}
@@ -113,8 +135,6 @@ class Spell extends Component {
   renderList(name) {
     const { spell } = this.state;
 
-    console.warn("running...", name);
-
     return spell[name]
       ? spell[name].map((type, key) => (
           <span key={key} className={`${this.baseClass}-${name}`}>
@@ -122,6 +142,12 @@ class Spell extends Component {
           </span>
         ))
       : null;
+  }
+
+  renderDescriptions(name) {
+    const { spell } = this.state;
+
+    return spell[name] ? spell[name].map(paragraph => paragraph) : null;
   }
 
   get components() {
@@ -154,6 +180,7 @@ class Spell extends Component {
             {this.renderSection(this.classes)}
             {this.renderSection(this.specs)}
             {this.renderSection(this.descriptions)}
+            {this.renderSection(this.higherLevel)}
           </Card>
         ) : (
           ""
