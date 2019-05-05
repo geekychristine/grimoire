@@ -37,7 +37,7 @@ class Index extends Component {
   successResponse(response) {
     this.setState({
       ...response,
-      spells: response.body.results
+      spells: response.body[0].results
     });
   }
 
