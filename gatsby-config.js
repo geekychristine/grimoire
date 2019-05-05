@@ -4,9 +4,10 @@ module.exports = {
     url: "http://localhost:3000"
   },
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`
+    title: `Grimoire`,
+    description: `A PWA for D&D 5th Edition Spells.`,
+    author: `@gatsbyjs`,
+    baseApi: "http://dnd5eapi.co/api"
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -31,8 +32,6 @@ module.exports = {
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png` // This path is relative to the root of the site.
       }
-    }// this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    `gatsby-plugin-offline`
+    }`gatsby-plugin-offline` // To learn more, visit: https://gatsby.dev/offline // this (optional) plugin enables Progressive Web App + Offline functionality
   ]
 };
