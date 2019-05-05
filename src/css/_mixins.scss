@@ -2,6 +2,11 @@
   box-shadow: 0 1 3px rgba(0, 0, 0, 0.2);
 }
 
+@mixin container {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
 @mixin card-gutters {
   padding-left: $baseSpacing;
   padding-right: $baseSpacing;

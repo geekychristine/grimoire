@@ -1,4 +1,8 @@
 .gr-header {
   padding: $baseSpacing;
   background: $black;
+
+  &-container {
+    @include container;
+  }
 }

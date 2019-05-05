@@ -1,39 +1,46 @@
-import React, { Component } from "react"
-import PropTypes from "prop-types"
-import { Link } from "gatsby"
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Link } from "gatsby";
 
 class Header extends Component {
   static propTypes = {
     children: PropTypes.node,
     baseClass: PropTypes.string,
-    siteTitle: PropTypes.string,
-  }
+    siteTitle: PropTypes.string
+  };
 
   static defaultProps = {
-    baseClass: "gr-header",
-    siteTitle: ``,
+    siteTitle: ``
+  };
+
+  constructor(props) {
+    super(props);
+
+    this.baseClass = "gr-header";
   }
 
   render() {
-    const { baseClass, children, siteTitle } = this.props
+    const { children, siteTitle } = this.props;
 
     return (
-      <header className={baseClass}>
-        <h1 style={{ margin: 0 }}>
-          <Link
-            to="/"
-            style={{
-              color: `white`,
-              textDecoration: `none`,
-            }}
-          >
-            {siteTitle}
-          </Link>
-        </h1>
-        {children}
+      <header className={this.baseClass}>
+        <div className={`${this.baseClass}-container`}>
+          <h1 style={{ margin: 0 }}>
+            <Link
+              to="/"
+              style={{
+                color: `white`,
+                textDecoration: `none`
+              }}
+            >
+              {siteTitle}
+            </Link>
+          </h1>
+          {children}
+        </div>
       </header>
-    )
+    );
   }
 }
 
-export default Header
+export default Header;
