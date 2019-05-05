@@ -17,19 +17,6 @@ class Spell extends Component {
     baseClass: "grim-spell"
   };
 
-  componentDidMount() {
-    console.warn("props:", this.props);
-    // const url = query.url;
-
-    // const res = await fetch(url);
-    // const data = await res.json();
-
-    // console.warn("### data:", data);
-    // return {
-    //   spell: data
-    // };
-  }
-
   listClasses(name) {
     const { spell, baseClass } = this.props;
     console.warn("spell[name]:", spell[name]);
