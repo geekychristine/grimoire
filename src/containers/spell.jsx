@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import get from "lodash/get";
 import { fetcher } from "../utils/fetch";
 
 import Loader from "../components/Loader/Loader";
@@ -21,9 +22,29 @@ class Spell extends Component {
     this.baseClass = "gr-spell";
     this.spellId = props.location.search.replace("?id=", "");
 
-    this.getSpellList = this.getSpellList.bind(this);
+    this.getSpellDetail = this.getSpellDetail.bind(this);
+    this.renderList = this.renderList.bind(this);
     this.successResponse = this.successResponse.bind(this);
     this.failureResponse = this.failureResponse.bind(this);
+    this.renderSection = this.renderSection.bind(this);
+
+    // InfoItem Schemas
+    this.casting = [
+      { title: "Casting Time", key: "casting_time" },
+      { title: "Duration", key: "duration" }
+    ];
+    this.classes = [
+      { title: "Classes", key: "classes", func: this.renderList },
+      { title: "Sub-Classes", key: "subclasses", func: this.renderList },
+      { title: "School", key: "school.name" }
+    ];
+    this.specs = [
+      { title: "Components", key: "components", func: this.renderList },
+      { title: "Range", key: "range" },
+      { title: "Concentration", key: "concentration" },
+      { title: "Ritual", key: "ritual" }
+    ];
+    this.descriptions = [{ title: "Description", key: "desc[0]" }];
 
     this.state = {
       loading: true,
@@ -34,7 +55,7 @@ class Spell extends Component {
 
   async componentDidMount() {
     if (!this.state.spell) {
-      this.getSpellList();
+      this.getSpellDetail();
     }
   }
 
@@ -52,7 +73,7 @@ class Spell extends Component {
     });
   }
 
-  async getSpellList() {
+  async getSpellDetail() {
     this.setState({
       loading: true
     });
@@ -64,13 +85,40 @@ class Spell extends Component {
     );
   }
 
-  listClasses(name) {
+  renderSection(items) {
+    const { spell } = this.state;
+    return (
+      <Section>
+        {items.map((item, index) => {
+          if (!item.func) {
+            console.warn("no Function:", item);
+            return (
+              <InfoItem key={index} title={item.title}>
+                {get(spell, item.key)}
+              </InfoItem>
+            );
+          }
+
+          console.warn("has Function:", item);
+          return (
+            <InfoItem key={index} title={item.title}>
+              {item.func(item.key)}
+            </InfoItem>
+          );
+        })}
+      </Section>
+    );
+  }
+
+  renderList(name) {
     const { spell } = this.state;
 
+    console.warn("running...", name);
+
     return spell[name]
-      ? spell[name].map((classType, key) => (
-          <span key={key} className={`${this.baseClass}-class`}>
-            {classType.name}
+      ? spell[name].map((type, key) => (
+          <span key={key} className={`${this.baseClass}-${name}`}>
+            {type.name || type}
           </span>
         ))
       : null;
@@ -99,34 +147,13 @@ class Spell extends Component {
           <Card>
             <Section modifier="split">
               <Heading>{spell.name}</Heading>
+              <InfoItem title="Page">{spell.page}</InfoItem>
               <Flag>Level {spell.level}</Flag>
             </Section>
-
-            <Section>
-              <InfoItem title="Casting Time">{spell.casting_time}</InfoItem>
-              <InfoItem title="Duration">{spell.duration}</InfoItem>
-              <InfoItem title="Page">{spell.page}</InfoItem>
-            </Section>
-
-            <Section>
-              <InfoItem title="Classes">{this.listClasses("classes")}</InfoItem>
-              <InfoItem title="Sub-Classes">
-                {this.listClasses("subclasses")}
-              </InfoItem>
-            </Section>
-            <Section>
-              <InfoItem title="School">{spell.school.name}</InfoItem>
-              <InfoItem title="Components">{this.components}</InfoItem>
-              <InfoItem title="Range">{spell.range}</InfoItem>
-            </Section>
-            <Section>
-              <InfoItem title="Concentration">{spell.concentration}</InfoItem>
-              <InfoItem title="Ritual">{spell.ritual}</InfoItem>
-            </Section>
-
-            <Section>
-              <InfoItem title="Description">{spell.desc[0]}</InfoItem>
-            </Section>
+            {this.renderSection(this.casting)}
+            {this.renderSection(this.classes)}
+            {this.renderSection(this.specs)}
+            {this.renderSection(this.descriptions)}
           </Card>
         ) : (
           ""
