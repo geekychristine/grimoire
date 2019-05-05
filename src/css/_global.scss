@@ -8,6 +8,12 @@ html {
   &::after {
     box-sizing: inherit;
   }
+
+  &:focus {
+    box-shadow: none;
+    outline: solid 3px $cambridge-blue;
+    outline-offset: 3px;
+  }
 }
 
 html,
@@ -54,9 +60,16 @@ li {
   }
 }
 
-a {
+a,
+a:visited {
   text-decoration: none;
   cursor: pointer;
+  color: $cadet-blue;
+
+  &:hover {
+    color: $cadet-blue-dark;
+    text-decoration: underline;
+  }
 }
 
 // Form Elements --------------
