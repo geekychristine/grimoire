@@ -1,16 +1,16 @@
-import React, { Fragment } from "react"
-import PropTypes from "prop-types"
-import Header from "../Header/Header"
-import { StaticQuery, graphql } from "gatsby"
-import "../../css/main.scss"
+import React, { Fragment } from "react";
+import PropTypes from "prop-types";
+import Header from "../Header/Header";
+import { StaticQuery, graphql } from "gatsby";
+import "../../css/main.scss";
 
 class Layout extends React.Component {
   static propTypes = {
-    children: PropTypes.node.isRequired,
-  }
+    children: PropTypes.node.isRequired
+  };
 
   render() {
-    const { data, children } = this.props
+    const { data, children } = this.props;
 
     return (
       <Fragment>
@@ -20,7 +20,7 @@ class Layout extends React.Component {
           <footer>© {new Date().getFullYear()}</footer>
         </div>
       </Fragment>
-    )
+    );
   }
 }
 
@@ -31,10 +31,11 @@ export default props => (
         site {
           siteMetadata {
             title
+            baseApi
           }
         }
       }
     `}
     render={data => <Layout data={data} {...props} />}
   />
-)
+);
