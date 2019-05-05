@@ -69,6 +69,7 @@ class IndexPage extends Component {
 
   render() {
     const { spells, loading } = this.state;
+
     return !loading ? (
       <Layout>
         <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
@@ -77,7 +78,6 @@ class IndexPage extends Component {
           {spells && spells.length ? (
             spells.map((spell, key) => {
               const spellId = key + 1;
-              // const spellName = spell.name.replace(" ", "-").toLowerCase()
               return (
                 <li key={spellId}>
                   <Link to={`/spell?id=${spellId}&url=${spell.url}`}>
