@@ -1,7 +1,9 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
-import Header from "../Header/Header";
 import { StaticQuery, graphql } from "gatsby";
+
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 import "../../css/main.scss";
 
 class Layout extends React.Component {
@@ -26,8 +28,8 @@ class Layout extends React.Component {
               React.cloneElement(child, { ...child.props, data: data, api })
             )}
           </main>
-          <footer>© {new Date().getFullYear()}</footer>
         </div>
+        <Footer />
       </Fragment>
     );
   }
