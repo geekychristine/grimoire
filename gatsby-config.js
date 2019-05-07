@@ -12,6 +12,7 @@ module.exports = {
     apiSpells: "/spells",
     apiSpellId: "/spell/:id"
   },
+  pathPrefix: "/grimoire",
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sass`,
