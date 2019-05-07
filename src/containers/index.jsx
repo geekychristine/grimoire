@@ -5,15 +5,12 @@ import { Link } from "gatsby";
 import { fetcher } from "../utils/fetch";
 
 import Loader from "../components/Loader/Loader";
+import Heading from "../components/Heading/Heading";
 
 class Index extends Component {
   static propTypes = {
     children: PropTypes.node,
     baseClass: PropTypes.string
-  };
-
-  static defaultProps = {
-    baseClass: "gr-home-page"
   };
 
   constructor(props) {
@@ -22,6 +19,8 @@ class Index extends Component {
     this.getSpellList = this.getSpellList.bind(this);
     this.successResponse = this.successResponse.bind(this);
     this.failureResponse = this.failureResponse.bind(this);
+
+    this.baseClass = "gr-spell-index";
 
     this.state = {
       loading: true,
@@ -72,21 +71,23 @@ class Index extends Component {
     ) : (
       <Loader loading={loading}>
         <Fragment>
-          <h1>Spell List:</h1>
-          <ul>
-            {spells && spells.length ? (
-              spells.map((spell, key) => {
-                const spellId = key + 1;
-                return (
-                  <li key={spellId}>
-                    <Link to={`/spell/?id=${spellId}`}>{spell.name}</Link>
-                  </li>
-                );
-              })
-            ) : (
-              <li>No Spells Listed</li>
-            )}
-          </ul>
+          <Heading element="h1">Spell List:</Heading>
+          <div className={this.baseClass}>
+            <ul className={`${this.baseClass}-list`}>
+              {spells && spells.length ? (
+                spells.map((spell, key) => {
+                  const spellId = key + 1;
+                  return (
+                    <li key={spellId} className={`${this.baseClass}-list-item`}>
+                      <Link to={`/spell/?id=${spellId}`}>{spell.name}</Link>
+                    </li>
+                  );
+                })
+              ) : (
+                <li>No Spells Listed</li>
+              )}
+            </ul>
+          </div>
         </Fragment>
       </Loader>
     );

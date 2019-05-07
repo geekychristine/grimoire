@@ -1,0 +1,19 @@
+.gr-spell-index-list {
+  display: flex;
+  flex-flow: row wrap;
+
+  &-item {
+    flex: 0 1 30%;
+    padding: $halfSpacing;
+    margin: $halfSpacing;
+    background-color: $white;
+
+    &:first-child {
+      margin-top: auto;
+    }
+
+    a {
+      display: block;
+    }
+  }
+}
