@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import BodyCopy from "../components/BodyCopy/BodyCopy";
+import BodyCopy from "../BodyCopy/BodyCopy";
 
 class Loader extends Component {
   static propTypes = {
