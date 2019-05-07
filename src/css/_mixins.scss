@@ -18,9 +18,9 @@
   line-height: 1.2;
 }
 
-@mixin body-copy {
-  font-size: 16px;
-  line-height: 1.1;
+@mixin body-copy($size: 18px) {
+  font-size: $size;
+  line-height: 1.2;
 }
 
 @-webkit-keyframes rotation {

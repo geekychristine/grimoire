@@ -9,8 +9,7 @@ import Heading from "../components/Heading/Heading";
 
 class Index extends Component {
   static propTypes = {
-    children: PropTypes.node,
-    baseClass: PropTypes.string
+    children: PropTypes.node
   };
 
   constructor(props) {
@@ -67,33 +66,26 @@ class Index extends Component {
     const { spells, loading, error } = this.state;
 
     return (
-      <Loader loading={loading}>
-        {error ? (
-          <p>{error.message}</p>
-        ) : (
-          <Fragment>
-            <Heading element="h1">Spell List:</Heading>
-            <div className={this.baseClass}>
-              <ul className={`${this.baseClass}-list`}>
-                {spells && spells.length ? (
-                  spells.map((spell, key) => {
-                    const spellId = key + 1;
-                    return (
-                      <li
-                        key={spellId}
-                        className={`${this.baseClass}-list-item`}
-                      >
-                        <Link to={`/spell/?id=${spellId}`}>{spell.name}</Link>
-                      </li>
-                    );
-                  })
-                ) : (
-                  <li>No Spells Listed</li>
-                )}
-              </ul>
-            </div>
-          </Fragment>
-        )}
+      <Loader loading={loading} error={error}>
+        <Fragment>
+          <Heading element="h1">Spell List:</Heading>
+          <div className={this.baseClass}>
+            <ul className={`${this.baseClass}-list`}>
+              {spells && spells.length ? (
+                spells.map((spell, key) => {
+                  const spellId = key + 1;
+                  return (
+                    <li key={spellId} className={`${this.baseClass}-list-item`}>
+                      <Link to={`/spell/?id=${spellId}`}>{spell.name}</Link>
+                    </li>
+                  );
+                })
+              ) : (
+                <li>No Spells Listed</li>
+              )}
+            </ul>
+          </div>
+        </Fragment>
       </Loader>
     );
   }

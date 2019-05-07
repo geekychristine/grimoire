@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import BodyCopy from "../components/BodyCopy/BodyCopy";
+
 class Loader extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
-    loading: PropTypes.bool
+    loading: PropTypes.bool,
+    error: PropTypes.object
   };
 
   static defaultProps = {
@@ -12,7 +15,11 @@ class Loader extends Component {
   };
 
   render() {
-    const { loading, children } = this.props;
+    const { loading, children, error } = this.props;
+
+    if (error) {
+      return <BodyCopy>{error.message}</BodyCopy>;
+    }
 
     return loading ? (
       <div className="gr-loader">
