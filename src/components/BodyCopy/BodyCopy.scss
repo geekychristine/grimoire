@@ -1,0 +1,5 @@
+.gr-body-copy {
+  @include body-copy;
+  display: inline-block;
+  margin-bottom: $halfSpacing;
+}
