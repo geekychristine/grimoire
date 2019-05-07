@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Tulpen+One");
 @import "variables";
 @import "mixins";
 @import "global";
@@ -11,3 +12,5 @@
 @import "../components/Layout/Layout";
 @import "../components/Loader/Loader";
 @import "../components/Section/Section";
+
+@import "../containers/index";

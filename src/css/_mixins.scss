@@ -13,8 +13,9 @@
   padding-right: $baseSpacing;
 }
 
-@mixin heading {
-  font-size: 20px;
+@mixin heading($size: 26px) {
+  font-family: "Tulpen One", Arial, Helvetica, sans-serif;
+  font-size: $size;
   line-height: 1.2;
 }
 
