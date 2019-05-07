@@ -14,7 +14,6 @@
 }
 
 @mixin heading($size: 26px) {
-  font-family: "Tulpen One", Arial, Helvetica, sans-serif;
   font-size: $size;
   line-height: 1.2;
 }
@@ -22,4 +21,17 @@
 @mixin body-copy {
   font-size: 16px;
   line-height: 1.1;
+}
+
+@-webkit-keyframes rotation {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(359deg);
+  }
+}
+
+@mixin spinner {
+  -webkit-animation: rotation 1.5s infinite linear;
 }

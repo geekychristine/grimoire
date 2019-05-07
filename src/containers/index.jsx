@@ -66,29 +66,34 @@ class Index extends Component {
   render() {
     const { spells, loading, error } = this.state;
 
-    return error ? (
-      <p>{error.message}</p>
-    ) : (
+    return (
       <Loader loading={loading}>
-        <Fragment>
-          <Heading element="h1">Spell List:</Heading>
-          <div className={this.baseClass}>
-            <ul className={`${this.baseClass}-list`}>
-              {spells && spells.length ? (
-                spells.map((spell, key) => {
-                  const spellId = key + 1;
-                  return (
-                    <li key={spellId} className={`${this.baseClass}-list-item`}>
-                      <Link to={`/spell/?id=${spellId}`}>{spell.name}</Link>
-                    </li>
-                  );
-                })
-              ) : (
-                <li>No Spells Listed</li>
-              )}
-            </ul>
-          </div>
-        </Fragment>
+        {error ? (
+          <p>{error.message}</p>
+        ) : (
+          <Fragment>
+            <Heading element="h1">Spell List:</Heading>
+            <div className={this.baseClass}>
+              <ul className={`${this.baseClass}-list`}>
+                {spells && spells.length ? (
+                  spells.map((spell, key) => {
+                    const spellId = key + 1;
+                    return (
+                      <li
+                        key={spellId}
+                        className={`${this.baseClass}-list-item`}
+                      >
+                        <Link to={`/spell/?id=${spellId}`}>{spell.name}</Link>
+                      </li>
+                    );
+                  })
+                ) : (
+                  <li>No Spells Listed</li>
+                )}
+              </ul>
+            </div>
+          </Fragment>
+        )}
       </Loader>
     );
   }
