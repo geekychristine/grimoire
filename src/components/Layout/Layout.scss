@@ -1,7 +1,6 @@
 .gr-layout {
+  @include container;
+  margin-top: 100px;
   flex: 1 0 auto;
   display: block;
-  max-width: 960px;
-  margin: 100px $baseSpacing 30px;
-  padding: 0 $baseSpacing;
 }
